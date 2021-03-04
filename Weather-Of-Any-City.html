@@ -1,0 +1,313 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="preconnect" href="https://fonts.gstatic.com">
+<link href="https://fonts.googleapis.com/css2?family=Courgette&family=Jura:wght@600&family=Righteous&family=Permanent+Marker&family=Tangerine:wght@700&display=swap" rel="stylesheet">
+        <title>Wheather</title>
+        <style type="text/css">
+            body {
+                margin: 0;
+                background: url("https://www.wallpapers.net/awesome-nature-hd-wallpaper/download/3840x2160.jpg");
+                background-size: cover;
+                
+            }
+            #nav_bar {
+                height: 3.5em;
+                margin-top: 5em;
+                display: flex;
+                justify-content: center;
+            }
+            #nav_bar > input {
+                width: 20em;
+                margin: 0.8em;
+                border-radius: 5px;
+                font-weight: 900;
+                border: none;
+                text-align: center;
+            }
+            #nav_bar > input:nth-child(1) {
+                color: white;
+                background: black;
+            }
+            #nav_bar > input:nth-child(1):focus {
+                color: black;
+                background: white;
+                border: transparent;
+            }
+            #nav_bar > input:nth-child(1):hover {
+                color: white;
+                border: none;
+                background: linear-gradient(to right, #c31432, #240b36);
+            }
+            #nav_bar > .search_btn {
+                width: 10em;
+                color: white;
+                background: #000046;
+            }
+            .div1 {
+                width: 30em;
+                height: 30em;
+                margin: 1em 33em;
+                border-radius: 10px;
+                box-shadow: 1px 1px 10px;
+                opacity: 90%;
+                background: linear-gradient(to bottom right, #1a2a6c, #b21f1f, #fdbb2d);
+            }
+            .place {
+                height: 5em;
+                display: flex;
+                text-align: center;
+            }
+            .place > div {
+                flex: 0.5;
+            }
+            h1 {
+                color: #fff;
+                font-family: 'Courgette', cursive;
+            }
+            p {
+                font-size: 17px;
+                margin-top: 1.8em;
+                font-family: 'Righteous', cursive;
+            }
+            #date {
+                word-spacing: 0.1em;
+                color: white;
+                font-family: 'Jura', sans-serif;
+                background: black;
+            }
+            #details {
+                display: flex;
+            }
+            #details > h4 {
+                height: 0em;
+                margin-left: 6.5em;
+                font-family: 'Righteous', cursive;
+            }
+            #details div {
+                text-align: center;
+                font-size: 20px;
+            }
+            .temperature {
+                width: 4em;
+                height: 1.3em;
+                margin: 0.4em 1.6em;
+                font-size: 4em;
+                border-radius: 100px;
+                box-shadow: 1px 1px 10px;
+                color: #2c3e50;
+                text-align: center;
+                font-family: 'Permanent Marker', cursive;
+            }
+            .wind_temp_div {
+                height: 4em;
+                display: flex; 
+                text-align: center; 
+            }
+            .wind_temp_div > div:nth-child(1) {
+                flex: 1;
+                line-height: 0;
+                margin: 0 0.25em 0 0.5em; 
+                box-shadow: 1px 1px 10px;
+                border-radius: 10px;
+                color: #bdc3c7;
+                background: linear-gradient(to bottom right, #000046, #1cb5e0);
+            }
+            .wind_temp_div > div:nth-child(1) > div {
+                display: flex;
+            }
+            .speed {
+                font-size: 18px;
+                margin: 0.5em 1.6em;
+            }
+            .deg {
+                margin: 0.5em 0.6em;
+            }
+            .wind_temp_div > div:nth-child(2) {
+                flex: 1; 
+                font-size: 20px;
+                margin: 0 0.5em 0 0.25em; 
+                display: flex;
+            }
+            .wind_temp_div > div:nth-child(2) h4 {
+                margin: 0.5em 0.5em;
+                box-shadow: 1px 1px 10px;
+                border-radius: 5px;
+                color: #bdc3c7;
+            }
+            .guide {
+                height: 3em; 
+                margin: 0.7em 0;
+                font-size: 60px;
+                font-weight: 900;
+                text-align: center; 
+                font-family: 'Tangerine', cursive;
+            }
+        </style>
+    </head>
+    <body>
+        <nav id="nav_bar">
+            <input type="text" placeholder="Know weather of place you like...">
+            <input type="submit" class="search_btn" value="Know" onclick="fun()">
+        </nav>
+        <div class="div1">
+            <div class="place">
+                <div>
+                    <p id="long"></p>
+                </div>
+                <div>
+                    <h1></h1>
+                </div>
+                <div>
+                    <p id="lati"></p>
+                </div>
+            </div>
+            <div id="date"></div>
+            <div id="details">
+                <h4>HUMIDITY
+                    <div class="humidity"></div>
+                </h4>
+                <h4>PRESSURE
+                    <div class="pressure"></div>
+                </h4>
+            </div>
+            <div class="temperature"></div>
+            <div class="wind_temp_div">
+                <div>
+                    <h2>Wind</h2>
+                    <div>
+                        <h4 class="speed"></h4>
+                        <h4 class="deg"></h4>
+                    </div>
+                </div>
+                <div>
+                    <h4>Max Temp
+                        <div class="temp_max"></div>
+                    </h4>
+                    <h4>Min Temp
+                        <div class="temp_min"></div>
+                    </h4>
+                </div>
+            </div>
+            <div class="guide">Guide</div>
+        </div>
+    </body>
+    <script>
+        setInterval(() => {
+            let dateTime = document.getElementById("date")
+            const date = new Date()
+            dateTime.innerHTML = date
+        }, 1)
+        // To make sure previous data always stay on page rather than starting from first.
+        {
+            let place = document.querySelector("h1")
+            place.innerHTML = localStorage.getItem("place")
+            
+            let long = document.getElementById("long")
+            long.innerHTML = localStorage.getItem("long")
+
+            let lati = document.getElementById("lati")
+            lati.innerHTML = localStorage.getItem("lati")
+                
+            
+            let humidity = document.querySelector(".humidity")
+            humidity.innerHTML = localStorage.getItem("humidity")
+
+
+            let pressure = document.querySelector(".pressure")
+            pressure.innerHTML = localStorage.getItem("pressure")
+                
+
+            let temp = document.querySelector(".temperature")
+            temp.innerHTML = localStorage.getItem("temp")
+                
+
+            let guide = document.querySelector(".guide")
+            guide.innerHTML = localStorage.getItem("guide")
+
+            let windSpeed = document.querySelector(".speed")
+            windSpeed.innerHTML = localStorage.getItem("windSpeed")
+                
+
+            let windDeg = document.querySelector(".deg")
+            windDeg.innerHTML = localStorage.getItem("windDeg")
+                
+
+            let temp_max = document.querySelector(".temp_max")
+            temp_max.innerHTML = localStorage.getItem("temp_max")
+                
+
+            let temp_min = document.querySelector(".temp_min")
+            temp_min.innerHTML = localStorage.getItem("temp_min")
+                
+        }
+
+        var fun = () => {
+            var weather = async () => {
+
+                let input = document.querySelector("input").value;
+
+
+                let data = fetch(`https://api.openweathermap.org/data/2.5/weather?q=${input}&units=metric&appid=f6c972b55091507ca9c45a304669db22` , {
+                    method: "GET"
+                })
+                let response = await data
+                let stream = await response.json()
+                console.log(stream);
+
+                let place = document.querySelector("h1")
+                place.innerHTML = stream.name
+                localStorage.setItem("place", place.innerHTML)
+
+                let long = document.getElementById("long")
+                long.innerHTML = `Longitude: ${stream.coord.lon}`
+                localStorage.setItem("long", long.innerHTML)
+
+                let lati = document.getElementById("lati")
+                lati.innerHTML = `Latitude: ${stream.coord.lat}`
+                localStorage.setItem("lati", lati.innerHTML)
+            
+                let humidity = document.querySelector(".humidity")
+                humidity.innerHTML = stream.main.humidity
+                localStorage.setItem("humidity", humidity.innerHTML)
+
+                let pressure = document.querySelector(".pressure")
+                pressure.innerHTML = stream.main.pressure
+                localStorage.setItem("pressure", pressure.innerHTML)
+
+                let temp = document.querySelector(".temperature")
+                temp.innerHTML = `${stream.main.temp} C`
+                localStorage.setItem("temp", temp.innerHTML)
+
+                let guide = document.querySelector(".guide")
+                if( stream.main.temp < 33 ){
+                    guide.innerHTML = "Good To Travel"
+                }
+                else {
+                    guide.innerHTML = "Hot To Travel"
+                }
+                localStorage.setItem("guide", guide.innerHTML)
+
+                let windSpeed = document.querySelector(".speed")
+                windSpeed.innerHTML = `Speed: ${stream.wind.speed}`
+                localStorage.setItem("windSpeed", windSpeed.innerHTML)
+
+                let windDeg = document.querySelector(".deg")
+                windDeg.innerHTML = `Deg: ${stream.wind.deg}`
+                localStorage.setItem("windDeg", windDeg.innerHTML)
+
+                let temp_max = document.querySelector(".temp_max")
+                temp_max.innerHTML = stream.main.temp_max;
+                localStorage.setItem("temp_max", temp_max.innerHTML)
+
+                let temp_min = document.querySelector(".temp_min")
+                temp_min.innerHTML = stream.main.temp_min
+                localStorage.setItem("temp_min", temp_min.innerHTML)
+
+            }
+            weather()
+        }
+    </script>
+</html>
